@@ -43,6 +43,133 @@ rules:
       description: "Check whether S3 Bucket is public"
       tags:
         - "S3"
+
+
+  MFADelete:
+    type: nodejs
+    uses: "./src/rules/S3MFADelete.js" 
+    main: check
+    with:
+      buckets: {{buckets}}
+    meta:
+      type: "warn"
+      description: "Check whether on S3 bucket MFA is enabled"
+      tags:
+        - "S3"
+
+  Versioning:
+    type: nodejs
+    uses: "./src/rules/S3Versioning.js" 
+    main: check
+    with:
+      buckets: {{buckets}}
+    meta:
+      type: "warn"
+      description: "Check whether on S3 bucket Versioning is enabled"
+      tags:
+        - "S3"
+
+
+  S3AccessLogs:
+    type: nodejs
+    uses: "./src/rules/S3AccessLogs.js" 
+    main: check
+    with:
+      buckets: {{buckets}}
+    meta:
+      type: "warn"
+      description: "Ensure the S3 bucket has access logging enabled"
+      tags:
+        - "S3"
+
+  S3AllowsAnyPrincipal:
+    type: nodejs
+    uses: "./src/rules/S3AllowsAnyPrincipal.js" 
+    main: check
+    with:
+      buckets: {{buckets}}
+    meta:
+      type: "warn"
+      description: "Ensure S3 bucket does not allow an action with any Principal"
+      tags:
+        - "S3"
+
+
+  S3BlockPublicACLs:
+    type: nodejs
+    uses: "./src/rules/S3BlockPublicACLs.js" 
+    main: check
+    with:
+      buckets: {{buckets}}
+    meta:
+      type: "warn"
+      description: "Ensure S3 bucket has block public ACLS enabled"
+      tags:
+        - "S3"
+
+
+  S3BlockPublicPolicy:
+    type: nodejs
+    uses: "./src/rules/S3BlockPublicPolicy.js" 
+    main: check
+    with:
+      buckets: {{buckets}}
+    meta:
+      type: "warn"
+      description: "Ensure S3 bucket has block public policy enabled"
+      tags:
+        - "S3"
+
+
+  S3IgnorePublicACLs:
+    type: nodejs
+    uses: "./src/rules/S3IgnorePublicACLs.js" 
+    main: check
+    with:
+      buckets: {{buckets}}
+    meta:
+      type: "warn"
+      description: "Ensure S3 bucket has ignore public ACLs enabled"
+      tags:
+        - "S3"
+
+
+  S3PublicACLRead:
+    type: nodejs
+    uses: "./src/rules/S3PublicACLRead.js" 
+    main: check
+    with:
+      buckets: {{buckets}}
+    meta:
+      type: "warn"
+      description: "S3 Bucket has an ACL defined which allows public READ access."
+      tags:
+        - "S3"
+
+
+  S3PublicACLWRITE:
+    type: nodejs
+    uses: "./src/rules/S3PublicACLWRITE.js" 
+    main: check
+    with:
+      buckets: {{buckets}}
+    meta:
+      type: "warn"
+      description: "S3 Bucket has an ACL defined which allows public WRITE access."
+      tags:
+        - "S3"
+
+  S3RestrictPublicBuckets:
+    type: nodejs
+    uses: "./src/rules/S3RestrictPublicBuckets.js" 
+    main: check
+    with:
+      buckets: {{buckets}}
+    meta:
+      type: "warn"
+      description: "Ensure S3 bucket has 'restrict_public_bucket' enabled"
+      tags:
+        - "S3"
 #actions:
 #  dummy-fix:
 #    type: nodejs
